@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>McQ Properties — 8-Week Content System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400;0,500;0,700;0,800;1,700;1,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#e90d41; --red-deep:#b80a33;
+  --ink:#0a0a0a; --page:#f7f7f8;
+  --pink:#fdecf1; --yellow:#fbf3da; --green:#eafaf1;
+  --line:#e3e3e6; --muted:#6b6b70;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif; color:var(--ink); background:var(--page);
+  line-height:1.6; -webkit-font-smoothing:antialiased;
+  background-image:linear-gradient(rgba(10,10,10,.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(10,10,10,.035) 1px,transparent 1px);
+  background-size:26px 26px;
+}
+.eyebrow,.sec-label{
+  font-family:'JetBrains Mono',monospace; text-transform:uppercase;
+  letter-spacing:.18em; font-size:11px; font-weight:500; color:var(--red);
+}
+/* ---- TOP BAR ---- */
+.topbar{
+  position:sticky; top:0; z-index:100; background:var(--ink);
+  border-bottom:3px solid var(--red);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 28px;
+}
+.topbar .brand{
+  font-family:'Rethink Sans',sans-serif; font-weight:800; color:#fff;
+  font-size:15px; letter-spacing:.01em;
+}
+.topbar .brand span{color:var(--red)}
+.topbar .meta{
+  font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#9a9aa0;
+  text-transform:uppercase; letter-spacing:.14em;
+}
+.pdf-btn{
+  font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.12em;
+  background:var(--red); color:#fff; border:none; padding:9px 16px;
+  border-radius:6px; cursor:pointer; transition:background .15s;
+}
+.pdf-btn:hover{background:var(--red-deep)}
+/* ---- LAYOUT ---- */
+.wrap{max-width:1080px; margin:0 auto; padding:0 28px 80px}
+/* ---- HERO ---- */
+.hero{padding:64px 0 36px}
+.hero .eyebrow{margin-bottom:18px}
+.hero h1{
+  font-family:'Rethink Sans',sans-serif; font-weight:800;
+  font-size:clamp(38px,6vw,68px); line-height:1.02; letter-spacing:-.02em;
+}
+.hero h1 em{color:var(--red); font-style:italic}
+.hero .sub{
+  margin-top:22px; font-size:18px; color:var(--muted); max-width:680px;
+}
+.hero .facts{
+  margin-top:28px; display:flex; flex-wrap:wrap; gap:10px;
+}
+.fact{
+  font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:500;
+  text-transform:uppercase; letter-spacing:.1em;
+  background:#fff; border:1px solid var(--line); border-radius:30px;
+  padding:8px 15px; color:var(--ink);
+}
+.fact b{color:var(--red)}
+/* ---- NAV PILLS ---- */
+.nav{display:flex; flex-wrap:wrap; gap:10px; margin:28px 0 12px}
+.pill{
+  display:inline-flex; align-items:center; gap:9px; text-decoration:none;
+  background:#fff; border:1px solid var(--line); border-radius:10px;
+  padding:10px 15px; color:var(--ink); font-weight:600; font-size:14px;
+  transition:border-color .15s, transform .15s;
+}
+.pill:hover{border-color:var(--red); transform:translateY(-1px)}
+.pill .n{
+  width:24px; height:24px; border-radius:50%; background:var(--red); color:#fff;
+  display:grid; place-items:center; font-family:'JetBrains Mono',monospace;
+  font-size:12px; font-weight:700;
+}
+/* ---- SECTION CARD ---- */
+.section-card{
+  background:#fff; border:1px solid var(--line); border-left:6px solid var(--red);
+  border-radius:14px; padding:36px 38px; margin:24px 0;
+  box-shadow:0 1px 2px rgba(10,10,10,.04);
+}
+.section-card>.sec-label{margin-bottom:10px}
+.section-card h2{
+  font-family:'Rethink Sans',sans-serif; font-weight:800;
+  font-size:clamp(26px,3.4vw,36px); line-height:1.08; letter-spacing:-.015em;
+  margin-bottom:8px;
+}
+.section-card h2 em{color:var(--red); font-style:italic}
+.section-card .lede{color:var(--muted); font-size:16px; margin-bottom:22px; max-width:760px}
+.section-card h3{
+  font-family:'Rethink Sans',sans-serif; font-weight:700; font-size:19px;
+  margin:26px 0 12px;
+}
+/* ---- CATEGORY BANNER ---- */
+.cat-banner{
+  background:var(--ink); color:#fff; border-radius:10px;
+  padding:14px 20px; margin:26px 0 16px;
+  font-family:'JetBrains Mono',monospace; text-transform:uppercase;
+  letter-spacing:.14em; font-size:12px; font-weight:700;
+  display:flex; align-items:center; gap:12px;
+}
+.cat-banner .bar{width:22px; height:3px; background:var(--red)}
+/* ---- STEPS ---- */
+.step{display:flex; gap:16px; margin:14px 0; align-items:flex-start}
+.step .num{
+  flex:none; width:34px; height:34px; border-radius:50%; background:var(--red);
+  color:#fff; display:grid; place-items:center; font-family:'JetBrains Mono',monospace;
+  font-weight:700; font-size:14px;
+}
+.step .body{padding-top:3px}
+.step .body strong{font-family:'Rethink Sans',sans-serif; font-size:16px}
+.step .body p{color:var(--muted); font-size:14.5px; margin-top:2px}
+/* ---- CALLOUTS ---- */
+.callout{border-radius:12px; padding:18px 22px; margin:18px 0; font-size:15px;
+  border:1px solid transparent;}
+.callout .tag{font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.14em; display:block; margin-bottom:6px}
+.callout.red{background:var(--pink); border-color:#f6c9d6}
+.callout.red .tag{color:var(--red)}
+.callout.yellow{background:var(--yellow); border-color:#efe2b4}
+.callout.yellow .tag{color:#9a7a12}
+.callout.green{background:var(--green); border-color:#bfe9d2}
+.callout.green .tag{color:#1a8a52}
+.callout b{font-weight:700}
+/* ---- TOOLS / PILLAR GRID ---- */
+.tools{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin:18px 0}
+.tool{border:1px solid var(--line); border-radius:12px; padding:18px 20px; background:#fff}
+.tool .t-name{font-family:'Rethink Sans',sans-serif; font-weight:800; font-size:16px; margin-bottom:5px}
+.tool .t-name em{color:var(--red); font-style:normal}
+.tool p{color:var(--muted); font-size:14px}
+.tool .t-tag{font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.12em; color:var(--red); display:block; margin-bottom:8px}
+/* ---- TABLE ---- */
+.tbl-scroll{overflow-x:auto; margin:18px 0; border:1px solid var(--line); border-radius:12px}
+table{border-collapse:collapse; width:100%; font-size:14px; background:#fff; min-width:720px}
+thead th{
+  background:var(--ink); color:#fff; text-align:left; padding:12px 14px;
+  font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.1em; position:sticky; top:0;
+}
+tbody td{padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:#fbfbfc}
+td .pillar-tag{
+  font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.06em; padding:3px 8px; border-radius:20px;
+  display:inline-block; white-space:nowrap;
+}
+.p-edu{background:#e7f0ff; color:#1652b8}
+.p-founder{background:var(--pink); color:var(--red)}
+.p-tax{background:var(--yellow); color:#9a7a12}
+.p-proof{background:var(--green); color:#1a8a52}
+.p-pov{background:#efe7fb; color:#6b3fc0}
+.p-lead{background:#ffe9d6; color:#c25c11}
+.p-blog{background:#e9eef2; color:#3a5566}
+.p-eng{background:#f0f0f2; color:#555}
+.cta-cell{font-weight:600; font-size:13px; white-space:nowrap}
+.money{color:var(--red); font-weight:700}
+.date-cell{font-family:'JetBrains Mono',monospace; font-size:12.5px; font-weight:500; white-space:nowrap}
+.wk-cell{font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--red); text-align:center}
+/* ---- EQUATION (old way / our way) ---- */
+.equation{display:grid; grid-template-columns:1fr auto 1fr; gap:0; margin:20px 0;
+  border-radius:12px; overflow:hidden; border:1px solid var(--line)}
+.eq-side{padding:20px 22px}
+.eq-side .lbl{font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.14em; margin-bottom:8px; display:block}
+.eq-side.industry{background:var(--ink); color:#fff}
+.eq-side.industry .lbl{color:#9a9aa0}
+.eq-side.ours{background:var(--red); color:#fff}
+.eq-side.ours .lbl{color:#ffd2dd}
+.eq-mid{display:grid; place-items:center; background:#fff; padding:0 16px;
+  font-family:'Rethink Sans',sans-serif; font-weight:800; font-size:22px; color:var(--red)}
+/* ---- WEEK GROUP ---- */
+.week-head{
+  display:flex; align-items:baseline; gap:14px; margin:30px 0 4px;
+  padding-bottom:8px; border-bottom:2px solid var(--ink);
+}
+.week-head .wk{font-family:'Rethink Sans',sans-serif; font-weight:800; font-size:22px}
+.week-head .wk em{color:var(--red); font-style:italic}
+.week-head .span{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.1em}
+.week-head .theme{margin-left:auto; font-size:13px; color:var(--muted); font-style:italic}
+/* ---- CLOSER ---- */
+.closer{
+  background:var(--ink); color:#fff; border-radius:16px; padding:44px 40px;
+  margin:34px 0 0; text-align:center;
+}
+.closer .eyebrow{color:var(--red); margin-bottom:14px}
+.closer p{font-family:'Rethink Sans',sans-serif; font-weight:800;
+  font-size:clamp(24px,3.4vw,34px); line-height:1.15; letter-spacing:-.01em}
+.closer p em{color:var(--red); font-style:italic}
+.closer .sub{font-family:'Inter',sans-serif; font-weight:400; font-size:15px;
+  color:#b5b5bb; margin-top:16px; max-width:560px; margin-left:auto; margin-right:auto}
+/* ---- FOOTER ---- */
+.foot{text-align:center; padding:40px 0 0; color:var(--muted); font-size:13px}
+.foot b{color:var(--ink)}
+.foot .mono{font-family:'JetBrains Mono',monospace; font-size:11px;
+  text-transform:uppercase; letter-spacing:.12em; margin-top:8px; color:var(--red)}
+@media print{
+  .topbar{position:static}
+  .pdf-btn{display:none}
+  body{background:#fff}
+  .section-card,.tool,.tbl-scroll{box-shadow:none}
+  .nav{display:none}
+}
+@media(max-width:640px){
+  .equation{grid-template-columns:1fr}
+  .eq-mid{padding:10px}
+  .section-card{padding:26px 22px}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand">McQ <span>Properties</span> · Content System</div>
+  <div class="meta">Prepared for Dennis E. McQueen</div>
+  <button class="pdf-btn" onclick="window.print()">Save as PDF</button>
+</div>
+<div class="wrap">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">8-Week Content System · Jun 5 – Jul 30, 2026</div>
+  <h1>A done-for-you content engine that turns posts into <em>booked calls</em>.</h1>
+  <p class="sub">Eight weeks of social content for McQ Properties, built around one job: move passive-investor prospects from a scroll to a conversation. Every week repeats the same proven rhythm — only the topic rotates. Here's the full plan, start to finish.</p>
+  <div class="facts">
+    <div class="fact">Founder · <b>Dennis E. McQueen</b></div>
+    <div class="fact">Central CTA · <b>Book a Call</b></div>
+    <div class="fact"><b>8 weeks</b> · 56 posts</div>
+    <div class="fact"><b>16</b> founder videos</div>
+    <div class="fact"><b>5</b> content pillars</div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="pill" href="#s1"><span class="n">1</span> The Strategy</a>
+  <a class="pill" href="#s2"><span class="n">2</span> Weekly Rhythm</a>
+  <a class="pill" href="#s3"><span class="n">3</span> The 5 Pillars</a>
+  <a class="pill" href="#s4"><span class="n">4</span> CTA Discipline</a>
+  <a class="pill" href="#s5"><span class="n">5</span> Video Repurposing</a>
+  <a class="pill" href="#s6"><span class="n">6</span> Full Calendar</a>
+  <a class="pill" href="#s7"><span class="n">7</span> Video Script Queue</a>
+  <a class="pill" href="#s8"><span class="n">8</span> Launch Notes</a>
+</nav>
+
+<!-- SECTION 1: STRATEGY -->
+<section class="section-card" id="s1">
+  <div class="sec-label">Section 01 · Overview</div>
+  <h2>How the system <em>works</em>.</h2>
+  <p class="lede">One repeatable weekly engine. Seven posts a week, each with a fixed role and a deliberate call-to-action. The structure never changes — that's what makes it sustainable to run and easy to batch. What rotates is the angle, so the audience never sees the same pitch twice in a row.</p>
+
+  <div class="equation">
+    <div class="eq-side industry">
+      <span class="lbl">The usual way</span>
+      Post when inspiration strikes. Random topics, inconsistent cadence, no clear ask — so nothing converts.
+    </div>
+    <div class="eq-mid">→</div>
+    <div class="eq-side ours">
+      <span class="lbl">The McQ system</span>
+      A fixed weekly rhythm with two dedicated "money posts" and a planned ask every single day. Predictable input, compounding output.
+    </div>
+  </div>
+
+  <div class="callout green">
+    <span class="tag">What you get</span>
+    A fully mapped 8-week calendar (56 posts), 16 founder-video topics queued and ready to script, and a repurposing playbook that turns each video into four platform-native posts.
+  </div>
+</section>
+
+<!-- SECTION 2: WEEKLY RHYTHM -->
+<section class="section-card" id="s2">
+  <div class="sec-label">Section 02 · The Engine</div>
+  <h2>The weekly <em>rhythm</em>.</h2>
+  <p class="lede">This pattern repeats every week for all eight weeks. The two video days are the core conversion engine — the "money posts" where we ask for the call. Everything else builds trust, drives traffic, or earns reach.</p>
+
+  <div class="step"><div class="num">M</div><div class="body"><strong>Monday · 🎠 Carousel — educational</strong><p>Swipe-through teaching post built in Canva. CTA: read the blog.</p></div></div>
+  <div class="step"><div class="num">T</div><div class="body"><strong>Tuesday · 🎥 Founder Video #1 <span class="money">← money post</span></strong><p>HeyGen or own footage. CTA: Book a Call.</p></div></div>
+  <div class="step"><div class="num">W</div><div class="body"><strong>Wednesday · 🖼 Static single — proof / quote / stat</strong><p>Single branded tile in Canva. CTA: visit website.</p></div></div>
+  <div class="step"><div class="num">T</div><div class="body"><strong>Thursday · 🎥 Founder Video #2 <span class="money">← money post</span></strong><p>HeyGen or podcast clip. CTA: Book a Call.</p></div></div>
+  <div class="step"><div class="num">F</div><div class="body"><strong>Friday · 🧲 Lead Magnet drop</strong><p>Canva + landing page. CTA: download the Passive Investor's Playbook.</p></div></div>
+  <div class="step"><div class="num">S</div><div class="body"><strong>Saturday · ✍️ Blog promo (new blog weekly)</strong><p>Website + Canva. CTA: read / join the group.</p></div></div>
+  <div class="step"><div class="num">S</div><div class="body"><strong>Sunday · 💬 Low-effort engagement</strong><p>Native / phone. No hard CTA — comments & DMs.</p></div></div>
+</section>
+
+<!-- SECTION 3: 5 PILLARS -->
+<section class="section-card" id="s3">
+  <div class="sec-label">Section 03 · Content Pillars</div>
+  <h2>The 5 <em>pillars</em>.</h2>
+  <p class="lede">Every post belongs to one of five themes. They're rotated so no angle ever repeats back-to-back — keeping the feed varied while consistently reinforcing Dennis's authority.</p>
+  <div class="tools">
+    <div class="tool"><span class="t-tag">Pillar 01</span><div class="t-name"><em>Education</em></div><p>How syndication, returns, and passive investing actually work.</p></div>
+    <div class="tool"><span class="t-tag">Pillar 02</span><div class="t-name"><em>Founder Story</em></div><p>Dennis's journey, BTS, lessons — builds trust.</p></div>
+    <div class="tool"><span class="t-tag">Pillar 03</span><div class="t-name"><em>Tax / Wealth</em></div><p>Depreciation, K-1s, tax-advantaged strategy for high earners.</p></div>
+    <div class="tool"><span class="t-tag">Pillar 04</span><div class="t-name"><em>Proof / Track Record</em></div><p>Deals, metrics, discipline, testimonials.</p></div>
+    <div class="tool"><span class="t-tag">Pillar 05</span><div class="t-name"><em>POV / Contrarian</em></div><p>Dennis's market takes — differentiates the brand.</p></div>
+  </div>
+</section>
+
+<!-- SECTION 4: CTA DISCIPLINE -->
+<section class="section-card" id="s4">
+  <div class="sec-label">Section 04 · Conversion Logic</div>
+  <h2>CTA <em>discipline</em>.</h2>
+  <p class="lede">Built on Brunson value-ladder logic: each post type has exactly one job. We don't ask for the call every day — we earn the right to ask, then ask deliberately twice a week.</p>
+
+  <div class="step"><div class="num">1</div><div class="body"><strong>Book a Call — 2×/week</strong><p>On the two video days. The core conversion ask.</p></div></div>
+  <div class="step"><div class="num">2</div><div class="body"><strong>Lead Magnet — 1×/week (Fri)</strong><p>Captures emails into GoHighLevel.</p></div></div>
+  <div class="step"><div class="num">3</div><div class="body"><strong>Blog / Website — 2×/week (Wed, Sat)</strong><p>Nurtures the audience and drives traffic.</p></div></div>
+  <div class="step"><div class="num">4</div><div class="body"><strong>Engagement — 1×/week (Sun)</strong><p>Earns reach with no ask.</p></div></div>
+
+  <div class="callout red">
+    <span class="tag">The key idea</span>
+    Two dedicated <b>"money posts"</b> a week, every week. The other five posts make those two land — by the time we ask for the call, the audience already trusts the brand.
+  </div>
+</section>
+
+<!-- SECTION 5: VIDEO REPURPOSING -->
+<section class="section-card" id="s5">
+  <div class="sec-label">Section 05 · Leverage</div>
+  <h2>One script, <em>four posts</em>.</h2>
+  <p class="lede">Each founder video is recorded once and adapted into four platform-native posts — maximum reach from minimum extra effort.</p>
+  <div class="tools">
+    <div class="tool"><span class="t-tag">Platform</span><div class="t-name"><em>LinkedIn</em></div><p>Native upload + a 3–5 line written hook above it. Professional tone.</p></div>
+    <div class="tool"><span class="t-tag">Platform</span><div class="t-name"><em>Facebook</em></div><p>Same video, slightly warmer caption. Tag the McQ page.</p></div>
+    <div class="tool"><span class="t-tag">Platform</span><div class="t-name"><em>Instagram</em></div><p>Reel, vertical 9:16, punchy on-screen captions, 3–5 hashtags.</p></div>
+    <div class="tool"><span class="t-tag">Platform</span><div class="t-name"><em>YouTube Short</em></div><p>Vertical &lt;60s cut, keyword title, link to website in description.</p></div>
+  </div>
+  <div class="callout yellow">
+    <span class="tag">Production tip</span>
+    Batch-record videos — shoot 4 at once (two weeks of content) to stay ahead and protect Dennis's time.
+  </div>
+</section>
+
+<!-- SECTION 6: FULL CALENDAR -->
+<section class="section-card" id="s6">
+  <div class="sec-label">Section 06 · The Plan</div>
+  <h2>The full <em>8-week calendar</em>.</h2>
+  <p class="lede">Every post, every day, June 5 through July 30. Money posts (Book a Call) are highlighted in crimson. Grouped by week so it's easy to review one week at a time.</p>
+
+  <div class="week-head">
+    <div class="wk">Week <em>1</em></div>
+    <div class="span">Jun 05 – Jun 11</div>
+    <div class="theme">Foundations — how passive investing works</div>
+  </div>
+  <div class="tbl-scroll"><table>
+    <thead><tr>
+      <th>Date</th><th>Day</th><th>Type</th><th>Pillar</th>
+      <th>Topic / Hook</th><th>Notes &amp; Direction</th><th>Tool</th><th>CTA</th><th>Platforms</th>
+    </tr></thead><tbody>
+      <tr>
+        <td class="date-cell">Jun 05</td>
+        <td>Fri</td>
+        <td>🧲 Lead Magnet</td>
+        <td><span class="pillar-tag p-lead">Lead Magnet</span></td>
+        <td><strong>Free guide: The Passive Investor&#x27;s Playbook</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Promo post + opt-in link. The anchor lead magnet every Friday.</td>
+        <td style="font-size:13px">Canva + landing page</td>
+        <td class="cta-cell">🧲 Download the guide (opt-in)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 06</td>
+        <td>Sat</td>
+        <td>✍️ Blog</td>
+        <td><span class="pillar-tag p-blog">Blog</span></td>
+        <td><strong>How Passive Multifamily Investing Actually Works</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">New blog this week — promote + link. Repurpose intro as the post copy.</td>
+        <td style="font-size:13px">Website + Canva header</td>
+        <td class="cta-cell">Read on website / join the group</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 07</td>
+        <td>Sun</td>
+        <td>💬 Engagement</td>
+        <td><span class="pillar-tag p-eng">Engagement</span></td>
+        <td><strong>Poll: What&#x27;s your #1 barrier to investing passively?</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Time / Knowledge / Trust / Capital — engagement only.</td>
+        <td style="font-size:13px">Native / phone</td>
+        <td class="cta-cell">Engagement only (no hard CTA)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 08</td>
+        <td>Mon</td>
+        <td>🎠 Carousel</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>5 myths about passive real estate investing</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Swipe-through myth/truth carousel. CTA: read the full blog.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Read the blog → website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 09</td>
+        <td>Tue</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>Why multifamily beats single-family for passive investors</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Break down the 3 structural reasons (economies of scale, forced appreciation, professional management) in 90s.</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 10</td>
+        <td>Wed</td>
+        <td>🖼 Static</td>
+        <td><span class="pillar-tag p-proof">Proof/Track Record</span></td>
+        <td><strong>Investor testimonial quote card</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Pull a quote (real once available). CTA: website.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Visit website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 11</td>
+        <td>Thu</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-pov">POV/Contrarian</span></td>
+        <td><strong>&quot;Cash flow is overrated for busy professionals&quot; — hear me out</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Contrarian take: why equity growth + tax benefits often beat chasing monthly cash flow for high earners.</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+  </tbody></table></div>
+  <div class="week-head">
+    <div class="wk">Week <em>2</em></div>
+    <div class="span">Jun 12 – Jun 18</div>
+    <div class="theme">Tax &amp; wealth for high earners</div>
+  </div>
+  <div class="tbl-scroll"><table>
+    <thead><tr>
+      <th>Date</th><th>Day</th><th>Type</th><th>Pillar</th>
+      <th>Topic / Hook</th><th>Notes &amp; Direction</th><th>Tool</th><th>CTA</th><th>Platforms</th>
+    </tr></thead><tbody>
+      <tr>
+        <td class="date-cell">Jun 12</td>
+        <td>Fri</td>
+        <td>🧲 Lead Magnet</td>
+        <td><span class="pillar-tag p-lead">Lead Magnet</span></td>
+        <td><strong>Free guide: The Passive Investor&#x27;s Playbook</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Promo post + opt-in link. The anchor lead magnet every Friday.</td>
+        <td style="font-size:13px">Canva + landing page</td>
+        <td class="cta-cell">🧲 Download the guide (opt-in)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 13</td>
+        <td>Sat</td>
+        <td>✍️ Blog</td>
+        <td><span class="pillar-tag p-blog">Blog</span></td>
+        <td><strong>The 5 Tax Advantages Every High Earner Should Know</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">New blog this week — promote + link. Repurpose intro as the post copy.</td>
+        <td style="font-size:13px">Website + Canva header</td>
+        <td class="cta-cell">Read on website / join the group</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 14</td>
+        <td>Sun</td>
+        <td>💬 Engagement</td>
+        <td><span class="pillar-tag p-eng">Engagement</span></td>
+        <td><strong>Question: What would you do with truly passive income?</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Comment-bait, no link.</td>
+        <td style="font-size:13px">Native / phone</td>
+        <td class="cta-cell">Engagement only (no hard CTA)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 15</td>
+        <td>Mon</td>
+        <td>🎠 Carousel</td>
+        <td><span class="pillar-tag p-tax">Tax/Wealth</span></td>
+        <td><strong>The busy professional&#x27;s tax-advantage checklist</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">6-slide save-worthy checklist. CTA: blog.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Read the blog → website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 16</td>
+        <td>Tue</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-tax">Tax/Wealth</span></td>
+        <td><strong>The tax benefit nobody explains: bonus depreciation</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">How a cost-seg study can shelter a big chunk of your W-2 income — plain English, no jargon.</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 17</td>
+        <td>Wed</td>
+        <td>🖼 Static</td>
+        <td><span class="pillar-tag p-pov">POV/Contrarian</span></td>
+        <td><strong>Dennis quote: &#x27;Patient capital compounds.&#x27;</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Branded quote card. CTA: website.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Visit website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 18</td>
+        <td>Thu</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-founder">Founder Story</span></td>
+        <td><strong>Why I left [prior path] to build McQ Properties</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">2-min origin story: the moment Dennis decided to put investor capital to work in multifamily.</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+  </tbody></table></div>
+  <div class="week-head">
+    <div class="wk">Week <em>3</em></div>
+    <div class="span">Jun 19 – Jun 25</div>
+    <div class="theme">Deal mechanics &amp; metrics</div>
+  </div>
+  <div class="tbl-scroll"><table>
+    <thead><tr>
+      <th>Date</th><th>Day</th><th>Type</th><th>Pillar</th>
+      <th>Topic / Hook</th><th>Notes &amp; Direction</th><th>Tool</th><th>CTA</th><th>Platforms</th>
+    </tr></thead><tbody>
+      <tr>
+        <td class="date-cell">Jun 19</td>
+        <td>Fri</td>
+        <td>🧲 Lead Magnet</td>
+        <td><span class="pillar-tag p-lead">Lead Magnet</span></td>
+        <td><strong>Free guide: The Passive Investor&#x27;s Playbook</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Promo post + opt-in link. The anchor lead magnet every Friday.</td>
+        <td style="font-size:13px">Canva + landing page</td>
+        <td class="cta-cell">🧲 Download the guide (opt-in)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 20</td>
+        <td>Sat</td>
+        <td>✍️ Blog</td>
+        <td><span class="pillar-tag p-blog">Blog</span></td>
+        <td><strong>Reading a Deal: A Beginner&#x27;s Guide to Syndication Metrics</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">New blog this week — promote + link. Repurpose intro as the post copy.</td>
+        <td style="font-size:13px">Website + Canva header</td>
+        <td class="cta-cell">Read on website / join the group</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 21</td>
+        <td>Sun</td>
+        <td>💬 Engagement</td>
+        <td><span class="pillar-tag p-eng">Engagement</span></td>
+        <td><strong>This-or-that: Cash flow vs. appreciation?</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Story/poll sticker on IG, text post elsewhere.</td>
+        <td style="font-size:13px">Native / phone</td>
+        <td class="cta-cell">Engagement only (no hard CTA)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 22</td>
+        <td>Mon</td>
+        <td>🎠 Carousel</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>How a syndication actually works (in 6 slides)</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">LP vs GP, capital call, distributions, exit. CTA: blog.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Read the blog → website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 23</td>
+        <td>Tue</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-proof">Proof/Track Record</span></td>
+        <td><strong>Anatomy of one of our deals: from acquisition to refi</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Walk through a real(ish) deal lifecycle — what we bought, what we improved, what investors saw.</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 24</td>
+        <td>Wed</td>
+        <td>🖼 Static</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>Stat card: avg multifamily hold period</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">One striking stat, gold-on-navy. CTA: website.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Visit website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 25</td>
+        <td>Thu</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>What &#x27;accredited investor&#x27; actually means (and why it matters)</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Demystify the SEC definition and what it unlocks for passive investors.</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+  </tbody></table></div>
+  <div class="week-head">
+    <div class="wk">Week <em>4</em></div>
+    <div class="span">Jun 26 – Jul 02</div>
+    <div class="theme">Discipline &amp; downside-first</div>
+  </div>
+  <div class="tbl-scroll"><table>
+    <thead><tr>
+      <th>Date</th><th>Day</th><th>Type</th><th>Pillar</th>
+      <th>Topic / Hook</th><th>Notes &amp; Direction</th><th>Tool</th><th>CTA</th><th>Platforms</th>
+    </tr></thead><tbody>
+      <tr>
+        <td class="date-cell">Jun 26</td>
+        <td>Fri</td>
+        <td>🧲 Lead Magnet</td>
+        <td><span class="pillar-tag p-lead">Lead Magnet</span></td>
+        <td><strong>Free guide: The Passive Investor&#x27;s Playbook</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Promo post + opt-in link. The anchor lead magnet every Friday.</td>
+        <td style="font-size:13px">Canva + landing page</td>
+        <td class="cta-cell">🧲 Download the guide (opt-in)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 27</td>
+        <td>Sat</td>
+        <td>✍️ Blog</td>
+        <td><span class="pillar-tag p-blog">Blog</span></td>
+        <td><strong>Why We Stress-Test the Downside First</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">New blog this week — promote + link. Repurpose intro as the post copy.</td>
+        <td style="font-size:13px">Website + Canva header</td>
+        <td class="cta-cell">Read on website / join the group</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 28</td>
+        <td>Sun</td>
+        <td>💬 Engagement</td>
+        <td><span class="pillar-tag p-eng">Engagement</span></td>
+        <td><strong>Weekend read recommendation from Dennis</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Book/article Dennis likes — personal, builds trust.</td>
+        <td style="font-size:13px">Native / phone</td>
+        <td class="cta-cell">Engagement only (no hard CTA)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 29</td>
+        <td>Mon</td>
+        <td>🎠 Carousel</td>
+        <td><span class="pillar-tag p-proof">Proof/Track Record</span></td>
+        <td><strong>4 metrics we report to every investor</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Transparency carousel — IRR, EM, CoC, DSCR explained. CTA: blog.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Read the blog → website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jun 30</td>
+        <td>Tue</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-tax">Tax/Wealth</span></td>
+        <td><strong>Depreciation recapture: the thing your CPA forgets to mention</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">The honest downside conversation — builds trust by naming the catch.</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 01</td>
+        <td>Wed</td>
+        <td>🖼 Static</td>
+        <td><span class="pillar-tag p-founder">Founder Story</span></td>
+        <td><strong>Photo + caption: on-site at a property</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Authentic founder photo. CTA: website.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Visit website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 02</td>
+        <td>Thu</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-pov">POV/Contrarian</span></td>
+        <td><strong>Most syndicators won&#x27;t show you this number</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Why Dennis leads with the stress-tested downside case, not the rosy IRR.</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+  </tbody></table></div>
+  <div class="week-head">
+    <div class="wk">Week <em>5</em></div>
+    <div class="span">Jul 03 – Jul 09</div>
+    <div class="theme">Behind the underwriting</div>
+  </div>
+  <div class="tbl-scroll"><table>
+    <thead><tr>
+      <th>Date</th><th>Day</th><th>Type</th><th>Pillar</th>
+      <th>Topic / Hook</th><th>Notes &amp; Direction</th><th>Tool</th><th>CTA</th><th>Platforms</th>
+    </tr></thead><tbody>
+      <tr>
+        <td class="date-cell">Jul 03</td>
+        <td>Fri</td>
+        <td>🧲 Lead Magnet</td>
+        <td><span class="pillar-tag p-lead">Lead Magnet</span></td>
+        <td><strong>Free guide: The Passive Investor&#x27;s Playbook</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Promo post + opt-in link. The anchor lead magnet every Friday.</td>
+        <td style="font-size:13px">Canva + landing page</td>
+        <td class="cta-cell">🧲 Download the guide (opt-in)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 04</td>
+        <td>Sat</td>
+        <td>✍️ Blog</td>
+        <td><span class="pillar-tag p-blog">Blog</span></td>
+        <td><strong>Cash Flow vs. Appreciation: What Busy Professionals Should Optimize For</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">New blog this week — promote + link. Repurpose intro as the post copy.</td>
+        <td style="font-size:13px">Website + Canva header</td>
+        <td class="cta-cell">Read on website / join the group</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 05</td>
+        <td>Sun</td>
+        <td>💬 Engagement</td>
+        <td><span class="pillar-tag p-eng">Engagement</span></td>
+        <td><strong>Behind-the-scenes phone photo + 1 line</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Lowest effort, highest authenticity.</td>
+        <td style="font-size:13px">Native / phone</td>
+        <td class="cta-cell">Engagement only (no hard CTA)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 06</td>
+        <td>Mon</td>
+        <td>🎠 Carousel</td>
+        <td><span class="pillar-tag p-pov">POV/Contrarian</span></td>
+        <td><strong>5 things sponsors say that should make you walk</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Red-flag carousel. CTA: blog.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Read the blog → website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 07</td>
+        <td>Tue</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-founder">Founder Story</span></td>
+        <td><strong>A day in the life: how I underwrite a deal</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">BTS of the actual work — screen-share energy, whiteboard, the boring discipline behind returns.</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 08</td>
+        <td>Wed</td>
+        <td>🖼 Static</td>
+        <td><span class="pillar-tag p-proof">Proof/Track Record</span></td>
+        <td><strong>Mini case-study tile: 1 deal, 3 numbers</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Snackable proof. CTA: website.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Visit website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 09</td>
+        <td>Thu</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>Preferred return vs. equity split — explained on a napkin</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">The waterfall, simplified. Where your money sits and when you get paid.</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+  </tbody></table></div>
+  <div class="week-head">
+    <div class="wk">Week <em>6</em></div>
+    <div class="span">Jul 10 – Jul 16</div>
+    <div class="theme">Where the wealthy park money</div>
+  </div>
+  <div class="tbl-scroll"><table>
+    <thead><tr>
+      <th>Date</th><th>Day</th><th>Type</th><th>Pillar</th>
+      <th>Topic / Hook</th><th>Notes &amp; Direction</th><th>Tool</th><th>CTA</th><th>Platforms</th>
+    </tr></thead><tbody>
+      <tr>
+        <td class="date-cell">Jul 10</td>
+        <td>Fri</td>
+        <td>🧲 Lead Magnet</td>
+        <td><span class="pillar-tag p-lead">Lead Magnet</span></td>
+        <td><strong>Free guide: The Passive Investor&#x27;s Playbook</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Promo post + opt-in link. The anchor lead magnet every Friday.</td>
+        <td style="font-size:13px">Canva + landing page</td>
+        <td class="cta-cell">🧲 Download the guide (opt-in)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 11</td>
+        <td>Sat</td>
+        <td>✍️ Blog</td>
+        <td><span class="pillar-tag p-blog">Blog</span></td>
+        <td><strong>Bonus Depreciation, Explained Without the Jargon</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">New blog this week — promote + link. Repurpose intro as the post copy.</td>
+        <td style="font-size:13px">Website + Canva header</td>
+        <td class="cta-cell">Read on website / join the group</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 12</td>
+        <td>Sun</td>
+        <td>💬 Engagement</td>
+        <td><span class="pillar-tag p-eng">Engagement</span></td>
+        <td><strong>Poll: How do you currently invest outside your job?</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Market-research engagement.</td>
+        <td style="font-size:13px">Native / phone</td>
+        <td class="cta-cell">Engagement only (no hard CTA)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 13</td>
+        <td>Mon</td>
+        <td>🎠 Carousel</td>
+        <td><span class="pillar-tag p-tax">Tax/Wealth</span></td>
+        <td><strong>Where the wealthy actually park money (it&#x27;s not stocks)</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Asset-allocation POV carousel. CTA: blog.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Read the blog → website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 14</td>
+        <td>Tue</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-proof">Proof/Track Record</span></td>
+        <td><strong>The deal we PASSED on (and why)</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Proof of discipline. Walk through a deal that didn&#x27;t clear the bar.</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 15</td>
+        <td>Wed</td>
+        <td>🖼 Static</td>
+        <td><span class="pillar-tag p-tax">Tax/Wealth</span></td>
+        <td><strong>Stat card: tax drag on active income</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Provocative number. CTA: website.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Visit website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 16</td>
+        <td>Thu</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-tax">Tax/Wealth</span></td>
+        <td><strong>How passive losses can offset your active income</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">The K-1 magic for the right investor profile — with the &#x27;talk to your CPA&#x27; caveat.</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+  </tbody></table></div>
+  <div class="week-head">
+    <div class="wk">Week <em>7</em></div>
+    <div class="span">Jul 17 – Jul 23</div>
+    <div class="theme">Vetting sponsors &amp; market POV</div>
+  </div>
+  <div class="tbl-scroll"><table>
+    <thead><tr>
+      <th>Date</th><th>Day</th><th>Type</th><th>Pillar</th>
+      <th>Topic / Hook</th><th>Notes &amp; Direction</th><th>Tool</th><th>CTA</th><th>Platforms</th>
+    </tr></thead><tbody>
+      <tr>
+        <td class="date-cell">Jul 17</td>
+        <td>Fri</td>
+        <td>🧲 Lead Magnet</td>
+        <td><span class="pillar-tag p-lead">Lead Magnet</span></td>
+        <td><strong>Free guide: The Passive Investor&#x27;s Playbook</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Promo post + opt-in link. The anchor lead magnet every Friday.</td>
+        <td style="font-size:13px">Canva + landing page</td>
+        <td class="cta-cell">🧲 Download the guide (opt-in)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 18</td>
+        <td>Sat</td>
+        <td>✍️ Blog</td>
+        <td><span class="pillar-tag p-blog">Blog</span></td>
+        <td><strong>Questions to Ask Any Sponsor Before You Wire a Dollar</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">New blog this week — promote + link. Repurpose intro as the post copy.</td>
+        <td style="font-size:13px">Website + Canva header</td>
+        <td class="cta-cell">Read on website / join the group</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 19</td>
+        <td>Sun</td>
+        <td>💬 Engagement</td>
+        <td><span class="pillar-tag p-eng">Engagement</span></td>
+        <td><strong>Ask-me-anything prompt for the week</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Drives DMs and comments.</td>
+        <td style="font-size:13px">Native / phone</td>
+        <td class="cta-cell">Engagement only (no hard CTA)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 20</td>
+        <td>Mon</td>
+        <td>🎠 Carousel</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>From W-2 to passive income: the 4-step path</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Journey carousel. CTA: blog.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Read the blog → website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 21</td>
+        <td>Tue</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-pov">POV/Contrarian</span></td>
+        <td><strong>Interest rates went up. Here&#x27;s why I&#x27;m still buying.</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Dennis&#x27;s market read — patient capital thesis in a high-rate environment.</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 22</td>
+        <td>Wed</td>
+        <td>🖼 Static</td>
+        <td><span class="pillar-tag p-pov">POV/Contrarian</span></td>
+        <td><strong>&#x27;Boring is a strategy&#x27; quote card</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Brand POV. CTA: website.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Visit website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 23</td>
+        <td>Thu</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-founder">Founder Story</span></td>
+        <td><strong>The mistake that made me a better operator</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Vulnerable founder lesson — what went wrong early and what it taught him.</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+  </tbody></table></div>
+  <div class="week-head">
+    <div class="wk">Week <em>8</em></div>
+    <div class="span">Jul 24 – Jul 30</div>
+    <div class="theme">The long game — patient capital</div>
+  </div>
+  <div class="tbl-scroll"><table>
+    <thead><tr>
+      <th>Date</th><th>Day</th><th>Type</th><th>Pillar</th>
+      <th>Topic / Hook</th><th>Notes &amp; Direction</th><th>Tool</th><th>CTA</th><th>Platforms</th>
+    </tr></thead><tbody>
+      <tr>
+        <td class="date-cell">Jul 24</td>
+        <td>Fri</td>
+        <td>🧲 Lead Magnet</td>
+        <td><span class="pillar-tag p-lead">Lead Magnet</span></td>
+        <td><strong>Free guide: The Passive Investor&#x27;s Playbook</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Promo post + opt-in link. The anchor lead magnet every Friday.</td>
+        <td style="font-size:13px">Canva + landing page</td>
+        <td class="cta-cell">🧲 Download the guide (opt-in)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 25</td>
+        <td>Sat</td>
+        <td>✍️ Blog</td>
+        <td><span class="pillar-tag p-blog">Blog</span></td>
+        <td><strong>Patient Capital: The Case for the Long Hold</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">New blog this week — promote + link. Repurpose intro as the post copy.</td>
+        <td style="font-size:13px">Website + Canva header</td>
+        <td class="cta-cell">Read on website / join the group</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 26</td>
+        <td>Sun</td>
+        <td>💬 Engagement</td>
+        <td><span class="pillar-tag p-eng">Engagement</span></td>
+        <td><strong>Gratitude / community shout-out post</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Warm, human, no ask.</td>
+        <td style="font-size:13px">Native / phone</td>
+        <td class="cta-cell">Engagement only (no hard CTA)</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 27</td>
+        <td>Mon</td>
+        <td>🎠 Carousel</td>
+        <td><span class="pillar-tag p-proof">Proof/Track Record</span></td>
+        <td><strong>What we look for before we buy a single unit</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Underwriting criteria carousel. CTA: blog.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Read the blog → website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 28</td>
+        <td>Tue</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>Your first passive deal: the 5 questions to ask any sponsor</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Arm the investor with a checklist — positions Dennis as the transparent one.</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 29</td>
+        <td>Wed</td>
+        <td>🖼 Static</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>Definition card: what is a cap rate?</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">Educational micro-tile. CTA: website.</td>
+        <td style="font-size:13px">Canva</td>
+        <td class="cta-cell">Visit website</td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn + Facebook + Instagram</td>
+      </tr>
+      <tr>
+        <td class="date-cell">Jul 30</td>
+        <td>Thu</td>
+        <td>🎥 Video</td>
+        <td><span class="pillar-tag p-proof">Proof/Track Record</span></td>
+        <td><strong>Investor returns: what &#x27;patient capital&#x27; looked like over 5 years</strong></td>
+        <td style="color:var(--muted);font-size:13.5px">The long-game payoff story tied to the podcast theme.</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td class="cta-cell"><span class="money">📞 Book a Call</span></td>
+        <td style="font-size:12.5px;color:var(--muted)">LinkedIn (native) + Facebook + Instagram Reel + YouTube Short</td>
+      </tr>
+  </tbody></table></div>
+</section>
+<!-- SECTION 7: VIDEO SCRIPT QUEUE -->
+<section class="section-card" id="s7">
+  <div class="sec-label">Section 07 · Production Tracker</div>
+  <h2>Video script <em>queue</em>.</h2>
+  <p class="lede">All 16 founder videos for the 8 weeks, in air-date order. Use the status columns to track what's written, recorded, and repurposed. Batch-record in sets of 4 to stay two weeks ahead.</p>
+  <div class="tbl-scroll"><table>
+    <thead><tr>
+      <th>#</th><th>Air Date</th><th>Pillar</th><th>Video Topic / Hook</th>
+      <th>Script Status</th><th>Source</th><th>Recorded?</th><th>Repurposed?</th>
+    </tr></thead><tbody>
+      <tr>
+        <td class="wk-cell">1</td>
+        <td class="date-cell">Jun 09</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>Why multifamily beats single-family for passive investors</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">2</td>
+        <td class="date-cell">Jun 11</td>
+        <td><span class="pillar-tag p-pov">POV/Contrarian</span></td>
+        <td><strong>&quot;Cash flow is overrated for busy professionals&quot; — hear me out</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">3</td>
+        <td class="date-cell">Jun 16</td>
+        <td><span class="pillar-tag p-tax">Tax/Wealth</span></td>
+        <td><strong>The tax benefit nobody explains: bonus depreciation</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">4</td>
+        <td class="date-cell">Jun 18</td>
+        <td><span class="pillar-tag p-founder">Founder Story</span></td>
+        <td><strong>Why I left [prior path] to build McQ Properties</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">5</td>
+        <td class="date-cell">Jun 23</td>
+        <td><span class="pillar-tag p-proof">Proof/Track Record</span></td>
+        <td><strong>Anatomy of one of our deals: from acquisition to refi</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">6</td>
+        <td class="date-cell">Jun 25</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>What &#x27;accredited investor&#x27; actually means (and why it matters)</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">7</td>
+        <td class="date-cell">Jun 30</td>
+        <td><span class="pillar-tag p-tax">Tax/Wealth</span></td>
+        <td><strong>Depreciation recapture: the thing your CPA forgets to mention</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">8</td>
+        <td class="date-cell">Jul 02</td>
+        <td><span class="pillar-tag p-pov">POV/Contrarian</span></td>
+        <td><strong>Most syndicators won&#x27;t show you this number</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">9</td>
+        <td class="date-cell">Jul 07</td>
+        <td><span class="pillar-tag p-founder">Founder Story</span></td>
+        <td><strong>A day in the life: how I underwrite a deal</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">10</td>
+        <td class="date-cell">Jul 09</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>Preferred return vs. equity split — explained on a napkin</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">11</td>
+        <td class="date-cell">Jul 14</td>
+        <td><span class="pillar-tag p-proof">Proof/Track Record</span></td>
+        <td><strong>The deal we PASSED on (and why)</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">12</td>
+        <td class="date-cell">Jul 16</td>
+        <td><span class="pillar-tag p-tax">Tax/Wealth</span></td>
+        <td><strong>How passive losses can offset your active income</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">13</td>
+        <td class="date-cell">Jul 21</td>
+        <td><span class="pillar-tag p-pov">POV/Contrarian</span></td>
+        <td><strong>Interest rates went up. Here&#x27;s why I&#x27;m still buying.</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">14</td>
+        <td class="date-cell">Jul 23</td>
+        <td><span class="pillar-tag p-founder">Founder Story</span></td>
+        <td><strong>The mistake that made me a better operator</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">15</td>
+        <td class="date-cell">Jul 28</td>
+        <td><span class="pillar-tag p-edu">Education</span></td>
+        <td><strong>Your first passive deal: the 5 questions to ask any sponsor</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / own footage</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+      <tr>
+        <td class="wk-cell">16</td>
+        <td class="date-cell">Jul 30</td>
+        <td><span class="pillar-tag p-proof">Proof/Track Record</span></td>
+        <td><strong>Investor returns: what &#x27;patient capital&#x27; looked like over 5 years</strong></td>
+        <td style="font-size:13px;color:var(--muted)">☐ To write</td>
+        <td style="font-size:13px">HeyGen / podcast clip</td>
+        <td style="text-align:center">☐</td>
+        <td style="text-align:center">☐</td>
+      </tr>
+  </tbody></table></div>
+</section>
+<!-- SECTION 8: LAUNCH NOTES -->
+<section class="section-card" id="s8">
+  <div class="sec-label">Section 08 · Before You Launch</div>
+  <h2>Launch <em>notes</em>.</h2>
+  <p class="lede">A short setup checklist and the operating principles that keep this system running smoothly week after week.</p>
+
+  <div class="callout yellow">
+    <span class="tag">Prerequisite</span>
+    <b>Webhook:</b> paste your GoHighLevel URL in <code style="font-family:'JetBrains Mono',monospace;background:#fff;padding:1px 6px;border-radius:4px;border:1px solid #efe2b4">src/lib/lead.ts</code> before launch so Friday's lead magnet captures emails correctly.
+  </div>
+
+  <div class="step"><div class="num">1</div><div class="body"><strong>Batch-record videos</strong><p>Shoot 4 at once (two weeks of content) to stay ahead.</p></div></div>
+  <div class="step"><div class="num">2</div><div class="body"><strong>Reuse your winners</strong><p>Repeat top static posts ~6 weeks later to a new audience — low effort, high reuse.</p></div></div>
+  <div class="step"><div class="num">3</div><div class="body"><strong>Anchor the lead magnet</strong><p>Friday's Passive Investor's Playbook is the anchor; rotate secondary magnets monthly if desired.</p></div></div>
+
+  <div class="callout green">
+    <span class="tag">The payoff</span>
+    Run this for eight weeks and you'll have a trained audience, a growing email list in GoHighLevel, 16 evergreen founder videos, and a repeatable engine you can run indefinitely — pointed at one outcome: <b>booked calls.</b>
+  </div>
+</section>
+
+<!-- CLOSER -->
+<div class="closer">
+  <div class="eyebrow">The whole point</div>
+  <p>Consistency beats intensity. Show up the same way every week, and the calls <em>start booking themselves</em>.</p>
+  <p class="sub">Eight weeks, one rhythm, two money posts a week. Predictable input — compounding trust.</p>
+</div>
+
+<div class="foot">
+  <b>McQ Properties</b> — 8-Week Content System · Jun 5 – Jul 30, 2026<br>
+  Founder: Dennis E. McQueen · Central CTA: Book a Call
+  <div class="mono">Prepared by Solvetech Solutions</div>
+</div>
+
+</div><!-- /wrap -->
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var target=document.getElementById(btn.getAttribute('data-copy'));
+    if(!target)return;
+    navigator.clipboard.writeText(target.innerText).then(function(){
+      var t=btn.innerText; btn.innerText='Copied!';
+      setTimeout(function(){btn.innerText=t;},1500);
+    });
+  });
+});
+</script>
+</body>
+</html>
